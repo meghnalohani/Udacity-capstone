@@ -109,7 +109,7 @@ workflows:
     jobs:
       - docker-lint
       - build-and-upload-docker-image:
-          requires: [lint-dockerfile]
+          requires: [docker-lint]
       - deploy-image-to-kubernetes-cluster:
           requires: [build-and-upload-docker-image]
       - rollout:
