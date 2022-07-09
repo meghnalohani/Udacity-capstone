@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/meghnalohani/Udacity-capstone.svg?style=svg)](https://app.circleci.com/pipelines/github/meghnalohani/Udacity-capstone)
+
 # Udacity-capstone
 This is a static website called Trip and Trail 
 Description
