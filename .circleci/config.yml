@@ -64,7 +64,7 @@ jobs:
             docker build --tag=tripandtrail .
             docker image ls
             dockerpath=meghnalohani/tripandtrail
-            docker login -u meghnalohani -p mskl954989
+            docker login -u meghnalohani -p skl954989
             echo "Docker ID and Image: $dockerpath"
             docker tag tripandtrail $dockerpath
             docker push $dockerpath
