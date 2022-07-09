@@ -1,15 +1,15 @@
-#arn:aws:eks:us-east-1:328901906092:cluster/meghnawebsite
+#arn:aws:eks:us-east-1:328901906092:cluster/meghnawebsite3
 
 version: 2.1
             
 jobs:
-  create-deployment:
-    executor: aws-eks/python3
-    steps:
-      - checkout
-      - aws-eks/update-kubeconfig-with-authenticator:
-          cluster-name: meghnawebsite
-          install-kubectl: true
+  # create-deployment:
+  #   executor: aws-eks/python3
+  #   steps:
+  #     - checkout
+  #     - aws-eks/update-kubeconfig-with-authenticator:
+  #         cluster-name: meghnawebsite
+  #         install-kubectl: true
   docker-lint:
     docker:
       - image: circleci/node:13.8.0
@@ -85,11 +85,11 @@ jobs:
       - run:
           name: Deploy image to Kubernetes cluster
           command: |
-            aws eks --region us-east-1 update-kubeconfig --name meghnawebsite
+            aws eks --region us-east-1 update-kubeconfig --name meghnawebsite3
             curl -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl"
             chmod +x ./kubectl
             mv ./kubectl /usr/local/bin/kubectl
-            kubectl config use-context arn:aws:eks:us-east-1:328901906092:cluster/meghnawebsite
+            kubectl config use-context arn:aws:eks:us-east-1:328901906092:cluster/meghnawebsite3
             kubectl apply -f ~/project/rollingdeployment.yml
             kubectl get nodes
             kubectl get deployments
@@ -104,11 +104,11 @@ jobs:
       - run:
           name: Rollout app
           command: |
-            aws eks --region us-east-1 update-kubeconfig --name meghnawebsite
+            aws eks --region us-east-1 update-kubeconfig --name meghnawebsite3
             curl -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl"
             chmod +x ./kubectl
             mv ./kubectl /usr/local/bin/kubectl
-            kubectl config use-context arn:aws:eks:us-east-1:328901906092:cluster/meghnawebsite 
+            kubectl config use-context arn:aws:eks:us-east-1:328901906092:cluster/meghnawebsite3
             kubectl apply -f ~/project/rollingdeployment.yml
             kubectl rollout status deployments/tripandtrail
 
